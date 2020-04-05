@@ -1,3 +1,7 @@
 # ProjectManagmentApp
-
-Ovo je test commit.
+Used technologies:
+-SpringBoot
+-Hibernate
+-Postgree SQL
+-Bootstrap
+-Javascript

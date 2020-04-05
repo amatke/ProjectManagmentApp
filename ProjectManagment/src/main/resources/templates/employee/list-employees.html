@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layouts :: header">
+	<title>New employee</title>
+</head>
+
+<body>
+
+	<nav th:replace="layouts :: navbar"></nav>
+	
+	<div class="container">
+	
+		<h4>Employee</h4> <hr>
+	
+		<a th:href="@{/employees/new}" class="btn btn-primary">Add Employee</a>
+		
+				
+		<table class="table table-bordered table-stripped">
+			<thead class="thead-dark">
+				<tr>
+					<th>First name</th>
+					<th>Last name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="emp : ${employees}">
+					<td th:text="${emp.firstName}"/>
+					<td th:text="${emp.lastName}"/>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+</body>
+</html>

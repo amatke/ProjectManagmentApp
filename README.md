@@ -2,7 +2,7 @@
 Used technologies:
 - SpringBoot
 - Hibernate
-- Postgree SQL
+- H2 DB, Postgree SQL
 - Thymeleaf
 - Bootstrap
 - Javascript

@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layouts :: header">
+
+<head th:replace="/fragments/header">
 	<title>New project</title>
 </head>
 
 <body>
 
-	<nav th:replace="layouts :: navbar"></nav>
+<!--	<nav th:replace="layouts :: navbar"></nav>-->
+	<nav th:replace="/fragments/nav"></nav>
+
 
 	<div class="container">
-		<form action="/projects/save" th:object="${project}" method="POST">
-			<input type="text" th:field="${project.name}" placeholder="Project name"> <br>
+		<form class="form" th:action="@{/projects/save}" th:object="${project}" method="POST">
+
+			<div class="form-group">
+				<label for="">Project name</label>
+				<input th:field="*{name}" type="text" class="form-control" placeholder="Enter project name">
+				<span class="error" th:if="${#fields.hasErrors('name')}"  th:errors="*{name}" />
+			</div>
+
+			<div class="form-group">
+				<label for="">Project stage</label>
+				<select th:field="*{stage}" class="form-control" >
+					<option th:value="NONSTATED"> NOT STATED </option>
+					<option th:value="INPROGRESS"> INPROGRESS </option>
+					<option th:value="COMPLETED"> COMPLETED </option>
+				</select>
+				<span class="error" th:if="${#fields.hasErrors('stage')}"  th:errors="*{stage}" />
+			</div>
+
+			<div class="form-group">
+				<label for="">Project description</label>
+				<textarea type="text" class="form-control" rows="5" cols="100" th:field="*{description}" placeholder="Enter Project description"/>
+				<span class="error" th:if="${#fields.hasErrors('description')}"  th:errors="*{description}" />
+			</div>
+
+			<div class="form-group">
+				<select th:field="${project.employees}" multiple="multiple" class="form-control">
+					<option th:each="emp : ${allEmployees}"
+							th:value="${emp.id}"
+							th:text="${emp.firstName}">
+				</select>
+				<!-- <select th:field="*{employees}"></select> -->
+			</div>
 			
-			<select th:field="${project.stage}">
-				<option th:value="NONSTATED"> NOT STATED </option>
-				<option th:value="INPROGRESS"> INPROGRESS </option>
-				<option th:value="COMPLETED"> COMPLETED </option>
-			</select> <br>
-			
-			<textarea type="text" th:field="${project.description}" placeholder="Enter Project description"></textarea> <br>
-			
-		    <select th:field="${project.employees}" multiple="multiple">
-		    	<option th:each="emp : ${allEmployees}"
-		    			th:value="${emp.id}"
-		    			th:text="${emp.firstName}">
-		    </select> 
-			<!-- <select th:field="*{employees}"></select> -->
-			
-			<button type="submit"> Create Project</button>
+
+			<button class="btn btn-primary btn-sm" type="submit"> Create Project</button>
 		</form>
 	</div>
+
+<footer th:replace="/fragments/foot"></footer>
 
 </body>
 </html>

@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layouts :: header">
+
+<head th:replace="/fragments/header">
 	<title>New project</title>
 </head>
 
 <body>
 
-	<nav th:replace="layouts :: navbar"></nav>
+<!--	<nav th:replace="layouts :: navbar"></nav>-->
+	<nav th:replace="/fragments/nav"></nav>
 
 	
 	<div class="container">
 	
 		<h4>Project</h4> <hr>
 	
-		<a th:href="@{/projects/new}" class="btn btn-primary">Add Project</a>
+		<a th:href="@{/projects/new}" class="btn btn-primary mb-3">Add Project</a>
 		
 	
 		<table class="table table-bordered table-stripped">
@@ -31,6 +33,8 @@
 			</tbody>
 		</table>
 	</div>
+
+<footer th:replace="/fragments/foot"></footer>
 
 </body>
 </html>

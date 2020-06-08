@@ -1,22 +1,42 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="layouts :: header">
+
+<nav th:replace="/fragments/header"></nav>
 	<title>New employee</title>
 </head>
 
 <body>
 
-	<nav th:replace="layouts :: navbar"></nav>
-	
+<!--	<nav th:replace="layouts :: navbar"></nav>-->
+	<nav th:replace="/fragments/nav"></nav>
+
 	<div class="container">
-		<form action="/employees/save" th:object="${employee}" method="POST">
-			<input type="text" th:field="${employee.firstName}" placeholder="First name"> <br>
-			<input type="text" th:field="${employee.lastName}" placeholder="Last name"> <br>
-			<input type="text" th:field="${employee.email}" placeholder="Email"> <br>
+		<form th:action="@{/employees/save}" th:object="${employee}" method="POST" class="form">
+
+			<div class="form-group">
+				<label for="">First name</label>
+				<input th:field="*{firstName}" type="text" class="form-control" placeholder="Enter firstName">
+				<span class="error" th:if="${#fields.hasErrors('firstName')}"  th:errors="*{firstName}" />
+			</div>
+
+			<div class="form-group">
+				<label for="">Last name</label>
+				<input th:field="*{lastName}" type="text" class="form-control" placeholder="Enter lastName">
+				<span class="error" th:if="${#fields.hasErrors('lastName')}"  th:errors="*{lastName}" />
+			</div>
+
+			<div class="form-group">
+				<label for="">Email</label>
+				<input th:field="*{email}" type="text" class="form-control" placeholder="Enter email">
+				<span class="error" th:if="${#fields.hasErrors('email')}"  th:errors="*{email}" />
+			</div>
+
 		
-			<button type="submit"> Create Employee</button>
+			<button class="btn btn-primary btn-sm" type="submit"> Create Employee</button>
 		</form>
 	</div>
+
+<footer th:replace="/fragments/foot"></footer>
 
 </body>
 </html>

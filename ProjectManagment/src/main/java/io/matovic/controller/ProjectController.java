@@ -5,10 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import io.matovic.model.Employee;
 import io.matovic.model.Project;
@@ -33,9 +30,9 @@ public class ProjectController {
 	}
 	
 	@GetMapping("/new")
-	public String displayProjectForm(Model model) {
-		Project project = new Project();
-		model.addAttribute("project", project);
+	public String displayProjectForm(@ModelAttribute Project project, Model model) {
+		//Project project = new Project();
+		//model.addAttribute("project", project);
 		
 		model.addAttribute("allEmployees", employeeRepository.findAll());
 		return "project/new-project";		//new-project.html

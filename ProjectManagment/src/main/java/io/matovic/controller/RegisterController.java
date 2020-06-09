@@ -40,6 +40,7 @@ public class RegisterController {
             return "register";
         }
 
+        user.setRole("ROLE_USER");
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
 

@@ -31,17 +31,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-//                .antMatchers("/projects/new").hasRole("ADMIN")
-//                .antMatchers("/projects/save").hasRole("ADMIN")
-//                .antMatchers("/employee/new").hasRole("ADMIN")
-//                .antMatchers("/employee/save").hasRole("ADMIN")
+                .antMatchers("/projects/new", "/projects/save", "/employees/new", "/employees/save").hasRole("ADMIN")
                 .antMatchers("/", "/**").permitAll()
                 .and()
                     .formLogin().loginPage("/login")
                 .and()
-                    .logout().logoutSuccessUrl("/")
-                .and()
-                    .exceptionHandling().accessDeniedPage("/");
+                    .logout().logoutSuccessUrl("/");
+               // .and()
+                //    .exceptionHandling().accessDeniedPage("/");
 
 //        http.csrf().disable();
 //        http.headers().frameOptions().disable();

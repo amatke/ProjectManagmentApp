@@ -11,6 +11,8 @@
 	<nav th:replace="/fragments/nav"></nav>
 
 	<div class="container">
+		<h3 class="display-4">Create new employee</h3>
+
 		<form th:action="@{/employees/save}" th:object="${employee}" method="POST" class="form">
 
 			<div class="form-group">
